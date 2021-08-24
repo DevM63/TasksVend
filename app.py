@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_wtf.csrf import CSRFProtect
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from flask_wtf import Form, RecaptchaField
-from tools import database, PostForm, random, session, site, user as users, verify, product, culture, coupon
+from tools import database, PostForm, random, session, site, user as users, product, culture, coupon
 from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 def Value():
     # title=site.name, log=product.buylog
