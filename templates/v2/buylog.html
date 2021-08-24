@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <table class='table' style='color:  "#{{color.4}};"'>
+                                <thead>
+                                    <th>
+                                        ID                                            
+                                    </th>
+                                    <th>
+                                        Product
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in log %}
+                                    <tr>
+                                        <td>
+                                            {{i.1}}
+                                        </td>
+                                        <td>
+                                            {{i.2}}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

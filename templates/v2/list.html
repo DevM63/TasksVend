@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+{% block content %}
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+const inputStep =1
+function pur(text,id,day,max, min){
+    console.log(max)
+    Swal.fire({
+    title: "<span style='font-size:20px'>" + text + "</span>",
+
+    input: 'range',
+    min,
+    inputAttributes: {
+        min: min,
+        max: max,
+        step: inputStep
+    },
+    preConfirm: () => {
+        var inputNumber2 = Swal.getContent().querySelector('[type="range"]').value
+        console.log(inputNumber2)
+        location.replace("/purchase/"+id+"/"+day+"/"+inputNumber2)
+    },
+    // didOpen: () => {
+    //     const inputRange = Swal.getInput()
+    //     const inputNumber = Swal.getContent().querySelector('#range-value')
+
+    //     // remove default output
+    //     inputRange.nextElementSibling.style.display = 'none'
+    //     inputRange.style.width = '100%'
+
+    //     // sync input[type=number] with input[type=range]
+    //     inputRange.addEventListener('input', () => {
+    //     inputNumber.value = inputRange.value
+    //     })
+
+    //     // sync input[type=range] with input[type=number]
+    //     inputNumber.addEventListener('change', () => {
+    //     inputRange.value = inputNumber.value
+    //     })
+    
+    
+    // }
+    })
+}
+</script>
+<div class="productcontent">
+    <div class="t">
+        <!-- <button type="button" id="sidebarCollapse" class="btn" style="background-color: #2c2c2e;"> -->
+        <!-- <i class="fa fa-list"></i> -->
+        <!-- </button>  -->
+        <span class="title">
+            상품목록 - 🔽아래의 카테고리를 클릭해보세요.🔽 <br>
+            <span style="margin-left: 10px;"></span>
+			<span class="u" style="font-size:15px" onclick='location.replace("/list")'>모든상품 [{{pl}}개] </span> 
+            {% for i in category %}
+            | <span class="u" style="font-size:15px" onclick='location.replace("/list/{{i.0}}")'>{{i.1}} [{{i.2}}개]</span> 
+
+        {% endfor %}
+        
+
+        </span>
+    </div>
+    <div class="html">
+        {% for i in productList %}
+            <div class="productbox">
+                <div class="producttitle">{{ i.1 }} <small>[{{i.13}}]</small></div>
+                <div style="margin: 10px;"></div>
+                <div class="line"></div>
+                <div style="margin: 10px;"></div>
+                <img src="{{ i.2 }}" width="475" height="270" alt="">
+                <div style="margin: 10px;"></div>
+                
+                {% if i.3 == "0" %}
+                    <div class="productbtn">[{{i.6}}]</div>
+                {% else %}
+                    <div class="productbtn" onclick='pur("[{{ i.1 }}] <br>{{i.6}}<br>{{ i.3 }} KRW","{{ i.0 }}", "1", {{i.9}},{{i.12}})'>[{{i.6}}] {{ i.3 }} KRW | 재고 {{i.9}}개</div>
+
+                {% endif %}
+                {% if i.4 == "0" %}
+                    <div class="productbtn">[{{i.7}}]</div>
+                {% else %}
+                    <div class="productbtn" onclick='pur("[{{ i.1 }}] <br>{{i.7}}<br>{{ i.4 }} KRW","{{ i.0 }}", "7",{{i.10}},{{i.12}})'>[{{i.7}}] {{ i.4 }} KRW | 재고 {{i.10}}개</div>
+                {% endif %}
+                {% if i.5 == "0" %}
+                    <div class="productbtn">[{{i.8}}]</div>
+                {% else %}
+                    <div class="productbtn" onclick='pur("[{{ i.1 }}] <br>{{i.8}}<br>{{ i.5 }} KRW","{{ i.0 }}", "30",{{i.11}},{{i.12}})'>[{{i.8}}] {{ i.5 }} KRW | 재고 {{i.11}}개</div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

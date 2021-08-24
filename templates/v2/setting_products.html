@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            상품ID
+                                        </th>
+                                        <th>
+                                            상품 이름
+                                        </th>
+                                        <th>
+                                            관리하기
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in product %}
+                                    <tr>
+                                        <td>
+                                            {{i.0}}
+                                        </td>
+                                        <td>
+                                            {{i.1}}
+                                            
+                                        </td>
+                                        <td>
+                                            <form action="/setting/products/{{i.0}}" method="post">
+    
+         
+                                                <div class="form-group">
+                                                    
+                                                    
+                                                    <button type="submit" class="btn btn-outline-secondary">관리하기</button>
+                                                    
+                                                </div>
+                                                
+                                            </form>
+                                        </td>
+ 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+                            <form action="/setting/products/createProduct" method="post">
+    
+         
+                                <div class="form-group">
+                                    
+                                    <div class="input-group">
+                                    <!-- <input type="text" class="form-control" id="exampleInputAmount" placeholder="상품이름" name="value" > -->
+                                    <button type="submit" class="btn btn-outline-secondary">상품생성</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <table class='table' style='color:  "#{{color.4}};"'>
+                                <thead>
+                                    <th>
+                                        PRODUCT                                      
+                                    </th>
+                                    <th>
+                                        CODE
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in log %}
+                                    <tr>
+                                        <td>
+                                            {{i.3}}
+                                        </td>
+                                        <td>
+                                            {% if "vraw" in i.2 %}
+                                            <a href="{{i.2}}" target="_blank">구매 코드 보러가기 (클릭)</a>
+                                            {% else %}
+                                            {{i.2}}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock %}

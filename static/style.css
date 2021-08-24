@@ -1,0 +1,269 @@
+/*
+    DEMO STYLE
+*/
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'GmarketSansMedium', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'GmarketSansMedium', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: white;
+}
+.icon{
+    width: 24px;
+    fill: rgb(249, 247, 247);
+    color: rgb(249, 247, 247);
+    float: left;
+    margin-right: 5px;
+
+}
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding: 15px 10px;
+    background: #4e4e50;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px solid #ddd;
+    /* margin: 40px 0; */
+}
+
+.wrapper {
+    /* display: flex; */
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: #1a1a1d;
+    color: #fff;
+    transition: all 0.3s;
+}
+#sidebarCollapse:hover {
+    background: #302f2f;
+}
+#sidebarCollapse{
+    color: white;
+    background-color: #1a1a1d;
+    font-size: 25px;
+}
+.producttitle { 
+    /* text-align: center; */
+    font-size: 20px;
+    
+}
+.productbox { 
+    
+    background-color: #1a1a1d;
+    border-radius: 4px;
+    padding: 10px;
+    border-top: solid;
+    width: 500px;
+    height: 500px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 15px;
+    float: left;
+
+    
+
+}
+.productbtn{
+    width: 100%;
+    height: 40px;
+    /* position: absolute; */
+    background-color: gray;
+    padding-top: 10px;
+    border-radius: 2px;
+    margin-top: 10px;
+    text-align: center;
+
+}
+.productcontent { 
+    /* display: inline; */
+    background-color: #2c2c2e;
+    border-radius: 4px;
+    padding: 10px;
+
+    max-width:none;
+    /* max-height: 93%; */
+    /* min-width: 93%; */
+    /* min-height: 93%; */
+    width: 93%;
+    height: auto;
+    position: absolute;
+    /* left: 50%; */
+    /* top: 110%; */
+    margin-top: 10px;
+    
+    /* -webkit-transform: translate(-50%,-50%); */
+    /* transform: translateX(-50%) translateY(-50%); */
+
+
+}
+.content { 
+    
+    border-left: solid2;
+    background-color: #1a1a1d;
+    border-radius: 4px;
+    padding: 10px;
+    border-top: solid;
+    max-width:none;
+    max-height: 93%;
+    min-width: 93%;
+    min-height: 93%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+
+}
+.html{
+    margin-left: 20px;
+}
+.title{
+    vertical-align: middle;
+    font-family: 'GmarketSansMedium', sans-serif;
+    font-size: 20px;
+}
+
+
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    /* padding: 20px; */
+    padding-top: 20px;
+    text-align: center;
+    background: #1a1a1d;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+body{
+    background-color: #4e4e50;
+    color: white;
+}
+
+#sidebar ul li a:hover {
+    color: white;
+    background: #302f2f;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #1a1a1d;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #1a1a1d;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+#content {
+    width: calc(100% - 250px);
+    padding: 40px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    /* top: 0; */
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

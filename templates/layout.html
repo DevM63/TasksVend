@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/style.css?134812341231231231231212421234">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="https://use.fontawesome.com/e7b1fefbc7.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <style>
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'GmarketSansMedium', sans-serif;
+        }
+
+        p {
+            font-family: 'GmarketSansMedium', sans-serif;
+            font-size: 1.1em;
+            font-weight: 300;
+            line-height: 1.7em;
+            color: white;
+        }
+        .icon{
+            width: 24px;
+            fill: rgb(249, 247, 247);
+            color: rgb(249, 247, 247);
+            float: left;
+            margin-right: 5px;
+
+        }
+        a,
+        a:hover,
+        a:focus {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .navbar {
+            padding: 15px 10px;
+            background: #4e4e50;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-btn {
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            border-bottom: 1px solid #ddd;
+            /* margin: 40px 0; */
+        }
+
+        .wrapper {
+            /* display: flex; */
+            width: 100%;
+        }
+
+        #sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            
+            height: 100vh;
+            z-index: 999;
+            background: #{{color.1}};
+            color: #{{color.2}};
+            transition: all 0.3s;
+        }
+        #sidebarCollapse:hover {
+            background: #302f2f;
+        }
+        #sidebarCollapse{
+            color: white;
+            background-color: #1a1a1d;
+            font-size: 25px;
+        }
+        .producttitle { 
+            /* text-align: center; */
+            font-size: 20px;
+            
+        }
+        .productbox { 
+            
+            background-color: #{{color.5}};
+            color: #{{color.6}};
+            border-radius: 4px;
+            padding: 10px;
+            border-top: solid #{{color.7}};
+            width: 500px;
+            height: 500px;
+            margin-right: 15px;
+            margin-left: 15px;
+            margin-top: 15px;
+            float: left;
+
+            
+
+        }
+        .productbtn{
+            width: 100%;
+            height: 40px;
+            /* position: absolute; */
+            background-color: #{{color.8}};
+            color: #{{color.9}};
+            padding-top: 10px;
+            border-radius: 2px;
+            margin-top: 10px;
+            text-align: center;
+
+        }
+        .productcontent { 
+            /* display: inline; */
+            background-color: #{{color.3}};
+            color: #{{color.4}};
+            border-radius: 4px;
+            padding: 10px;
+
+            max-width:none;
+            /* max-height: 93%; */
+            /* min-width: 93%; */
+            /* min-height: 93%; */
+            width: 93%;
+            height: auto;
+            position: absolute;
+            /* left: 50%; */
+            /* top: 110%; */
+            margin-top: 10px;
+            
+            /* -webkit-transform: translate(-50%,-50%); */
+            /* transform: translateX(-50%) translateY(-50%); */
+
+
+        }
+        .content { 
+            
+            border-left: solid2;
+            background-color: #1a1a1d;
+            border-radius: 4px;
+            padding: 10px;
+            border-top: solid;
+            max-width:none;
+            max-height: 93%;
+            min-width: 93%;
+            min-height: 93%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%,-50%);
+            transform: translateX(-50%) translateY(-50%);
+
+
+        }
+        .html{
+            margin-left: 20px;
+        }
+        .title{
+            vertical-align: middle;
+            font-family: 'GmarketSansMedium', sans-serif;
+            font-size: 20px;
+        }
+
+
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        #sidebar .sidebar-header {
+            /* padding: 20px; */
+            /* padding-top: 20px; */
+            /* text-align: center; */
+            color: #{{color.2}};
+            background-color: #{{color.1}};
+        }
+        
+        .shoptitle {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            }
+
+        #sidebar ul.components {
+            padding: 20px 0;
+        }
+
+        #sidebar ul p {
+            color: #fff;
+            background-color: #{{color.2}};
+            padding: 10px;
+        }
+
+        #sidebar ul li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+        }
+
+        body{
+
+            background-color: #{{color.0}} ;
+        }
+
+        #sidebar ul li a:hover {
+            color: {{color.2}};
+            background: #{{color.10}};
+        }
+
+        #sidebar ul li.active>a,
+        a[aria-expanded="true"] {
+            color: #{{color.2}};
+          
+
+        }
+
+        a[data-toggle="collapse"] {
+            position: relative;
+            background-color: #{{color.1}}; 
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+           
+            right: 20px;
+            transform: translateY(-50%);
+            background-color: #{{color.1}};
+        }
+
+        ul ul a {
+            font-size: 0.9em !important;
+            padding-left: 30px !important;
+            background: #1a1a1d;
+        }
+
+        ul.CTAs {
+            padding: 20px;
+        }
+
+        ul.CTAs a {
+            text-align: center;
+            font-size: 0.9em !important;
+            display: block;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        #content {
+            width: calc(100% - 250px);
+            padding: 40px;
+            min-height: 100vh;
+            transition: all 0.3s;
+            position: absolute;
+            /* top: 0; */
+            right: 0;
+        }
+
+        #content.active {
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+            #sidebar.active {
+                margin-left: 0;
+            }
+            #content {
+                width: 100%;
+            }
+            #content.active {
+                width: calc(100% - 250px);
+            }
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+        .userb {
+            border-top: 2px solid white;
+            border-bottom: 2px solid white;
+            padding-top: 10px;
+            padding-left: 5px;
+            padding-right: 10px;
+            padding-bottom: 10px;
+
+        }
+        .collapse list-unstyled {
+            background-color: #{{color.1}}; 
+
+        }
+    </style>
+</head>
+<script>
+    function user() {
+        Swal.fire({
+  icon: 'success',
+  title: '{{username}} 님',
+  html: '    <i class="fa fa-credit-card"></i> 금액 : {{useramount}}₩ <br>   <i class="fa fa-user"></i> 랭크 : {{userrank}} <br>   {% if uid==None %}  <a href="/connect/discord"> <i class="fa fa-sun-o"></i> Connect With Discord (클릭) </a>  {% else %} <a href="#"> <i class="fa fa-sun-o"></i> Discord: {{uid}} </a> {% endif %} ',
+  footer: '<a href="/refer">추천인 링크 </a>'
+})
+
+    }
+</script>
+<body>
+
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h1 class="shoptitle">{{title}}</h1>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                 
+					<div class="userb" onclick="user()"><center style="font-size: larger;"> 유저 정보 </center></div>
+             
+                </li>
+                <li>
+                    <a href="/">
+                        <i class="fa fa-info-circle"></i> 공지사항
+                    </a>
+                </li>
+                <li>
+                    <a href="/charge/culture">
+                        <i class="fa fa-gift"></i> 문상충전
+                    </a>
+                </li>
+                <li>
+                    <a href="/charge/bank">
+                        <i class="fa fa-university"></i> 계좌충전
+                    </a>
+                </li>
+                <li>
+                <a href="/redeem">
+                    <i class="fa fa-cart-plus"></i> 적립금 쿠폰 사용
+                </a>
+                </li>
+                <li>
+                    <a href="/calc">
+                        <i class="fa fa-calculator"></i> 문화상품권 수수료 계산기
+                    </a>
+                </li>
+                
+                <!-- <li>
+                    <a href="/list">
+                        <i class="fa fa-shopping-cart"></i> 
+                    </a>
+                </li> -->
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                        <i class="fa fa-shopping-cart"></i> 상품목록
+                    </a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="/list">모든상품 [{{pl}}]</a>
+                        </li>
+                        {% for i in category %}
+                            <li>
+                                <a href="/list/{{i.0}}">{{i.1}} [{{i.2}}]</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                <li>
+                    <a href="/buylog">
+                        <i class="fa fa-shopping-bag"></i> 구매로그
+                    </a>
+                </li>
+                <li>
+                    <a href="/codelog">
+                        <i class="fa fa-shopping-bag"></i> 코드로그
+                    </a>
+                </li>
+
+                {% if username == "Master" %}
+                    <div class="line"></div>
+                    <li>
+                        <a href="/setting/normal">
+                            <i class="fa fa-info-circle"></i> 기본설정
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/setting/products">
+                            <i class="fa fa-shopping-cart"></i> 상품관리
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="/setting/category">
+                            <i class="fa fa-list"></i> 카테고리
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="/setting/users">
+                            <i class="fa fa-user"></i> 유저관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/setting/ip">
+                            <i class="fa fa-lock"></i> 차단관리
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/setting/gift">
+                            <i class="fa fa-lock"></i> 적립금 쿠폰 관리
+                        </a>
+                    </li>
+                    <div class="line"></div>
+                {% endif %}
+                <li>
+                    <a href="/logout">
+                        <i class="fa fa-unlock"></i> 로그아웃
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content" >
+
+            
+
+            <!-- <div class="content"> -->
+                {% block content %}
+                {% endblock %}
+            <!-- </div> -->
+            
+            
+
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+	<script>
+</script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>추천인 </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="https://use.fontawesome.com/e7b1fefbc7.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        function onloadfunc() {
+            var percent = '{{refer_pencent}}'
+            if (percent == '0') {
+                Swal.fire({
+                    // position: 'top-end',
+                    icon: 'error',
+                    title: '추천인 적립이 비활성화 되있습니다.',
+                    width: '100%',
+
+                    footer: "사장님께 문의 해주세요.",
+                    confirmButtonText: "닫기",
+                    // showConfirmButton: false,
+                    // timer: 3000
+                    showLoaderOnConfirm: true,
+                }).then(() => {
+                    
+                    location.replace("/")
+                });
+            }
+         else {
+            Swal.fire({
+                // position: 'top-end',
+                icon: 'success',
+                title: '추천인 URL 링크를 아래 버튼을 통해 복사하세요.',
+                width: '100%',
+                html: '<input onchange="onchange()"  type="text" style=" width: 90%;" value="https://refer.vend.pw/{{refer}}" id="referlink">',
+                footer: "추천인 적립: {{refer_pencent}}%",
+                confirmButtonText: "링크 복사 / 닫기",
+                // showConfirmButton: false,
+                // timer: 3000
+                showLoaderOnConfirm: true,
+            }).then(() => {
+                copytext()
+                location.replace("/")
+            });
+        }
+        }
+
+        function onchange() {
+            onloadfunc()
+
+        }
+
+        function copytext() {
+            var copyText = document.getElementById("referlink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999)
+            document.execCommand("copy");
+            alert("복사 완료")
+        }
+    </script>
+</head>
+
+</head>
+
+<body onload="onloadfunc();">
+
+</body>
+
+</html>

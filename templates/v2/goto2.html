@@ -1,0 +1,21 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    function load() {
+        Swal.fire({
+            position: 'center',
+            icon: 'info',
+            title: '사이트를 생성하실려면 입금해주세요.',
+            text : '{{}}',
+            footer: 'FreeVend Security Redirection',
+            showConfirmButton: true,
+        }).then((result) => {
+            location.replace("{{url}}")
+
+        })
+
+    }
+</script>
+
+<body onload="load()">
+
+</body>

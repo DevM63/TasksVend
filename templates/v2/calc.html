@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>컬쳐랜드 수수료 계산기</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="https://use.fontawesome.com/e7b1fefbc7.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <script>
+        function onloadfunc() { 
+            Swal.fire({
+                title: '문화상품권 수수료 계산기',
+                // footer: '문화상품권 수수료.',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: "계산",
+                cancelButtonText: '취소',
+                cancelButtonColor: 'red',
+                showLoaderOnConfirm: true,
+                preConfirm: (amount) => {
+                        amount = parseInt(amount);
+                        if (amount < 1000) {
+                            Swal.fire({
+                            // position: 'top-end',
+                            icon: 'error',
+                            title: '계산 실패',
+                            html: '<b>1000원 미만은</b> 충전하실 수 없습니다.',
+                            footer: "3초후 자동으로 이동합니다.",
+                            showConfirmButton: false,
+                            timer: 3000
+                        }).then((result) => {
+                            location.replace("/")
+                        });
+
+                        }
+                        else {
+
+                            amount = (amount / 100) * (100 - {{culturedown}});
+                        Swal.fire({
+                            // position: 'top-end',
+                            icon: 'success',
+                            title: '계산 결과!',
+                            text: amount + '원',
+                            footer: "3초후 자동으로 이동합니다.",
+                            showConfirmButton: false,
+                            timer: 3000
+                        }).then((result) => {
+                            location.replace("/")
+                        });
+                        }
+                      
+
+                    
+
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            });
+                
+        }
+    </script>
+</head>
+
+</head>
+<body onload="onloadfunc();">
+    
+</body>
+</html>

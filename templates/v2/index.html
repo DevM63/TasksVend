@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+{% block content %}
+<div class="productcontent">
+    <div class="t">
+        <button type="button" id="sidebarCollapse" class="btn">
+        <i class="fa fa-list"></i>
+        </button> <span class="title">공지사항</span>
+    </div>
+    <div class="html">
+        {{notice|safe}}
+    </div>
+</div>
+{% endblock %}
+            

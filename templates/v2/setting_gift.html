@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            쿠폰 코드
+                                        </th>
+                                        <th>
+                                            금액
+                                        </th>
+                                        <th>삭제</th>
+                                </thead>
+                                <tbody>
+                                    {% for i in list %}
+                                    <tr>
+                                        <td>
+                                            {{i.1}}
+                                        </td>
+                                        <td>
+                                            {{i.2}}
+                                        </td>
+                                       
+                                        <td>
+                                            <form action="/setting/gift//delete/{{i.1}}" method="post">
+    
+         
+                                                <div class="form-group">
+                                                    
+                                                    <div class="input-group">
+                                                    <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+                            <form action="/setting/gift/gen" method="post">
+    
+         
+                                <div class="form-group">
+                                    
+                                    <div class="input-group">
+                                     <input type="text" class="form-control" id="exampleInputAmount" placeholder="금액" name="amount" > 
+                                    <button type="submit" class="btn btn-outline-secondary">쿠폰 생성</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

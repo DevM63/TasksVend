@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+    
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            ID
+                                        </th>
+                                        <th>
+                                            이름
+                                        </th>
+                                        <th>
+                                            상품갯수
+                                        </th>
+                                        <th>
+                                            이름변경
+                                        </th>
+                                        <th>삭제</th>
+                                </thead>
+                                <tbody>
+                                    {% for i in category %}
+                                    <tr>
+                                        <td>
+                                            {{i.0}}
+                                        </td>
+                                        <td>
+                                            {{i.1}}
+                                            
+                                        </td>
+                                        <td>
+                                            {{i.2}}
+                                        </td>
+                                        <td>
+                                            <form action="/setting/category/{{i.0}}/editName" method="post">
+    
+         
+                                                <div class="form-group">
+                                                    
+                                                    <div class="input-group">
+                                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="이름" name="value" value="{{i.1}}">
+                                                    <button type="submit" class="btn btn-outline-secondary">설정</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="/setting/category/{{i.0}}/delete" method="post">
+    
+         
+                                                <div class="form-group">
+                                                    
+                                                    <div class="input-group">
+                                                    <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+                            <form action="/setting/category/create" method="post">
+    
+         
+                                <div class="form-group">
+                                    
+                                    <div class="input-group">
+                                    <!-- <input type="text" class="form-control" id="exampleInputAmount" placeholder="상품이름" name="value" > -->
+                                    <button type="submit" class="btn btn-outline-secondary">카테고리생성</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

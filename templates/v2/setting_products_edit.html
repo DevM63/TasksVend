@@ -1,0 +1,461 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>{{p.main.2}} ({{p.main.1}})</h3>
+                            <hr>
+                            
+                            <p>상품이름 수정</p>
+                            <form action="/setting/products/{{p.main.1}}/editName" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="상품이름" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                </div></div>
+                            </form>
+                            <hr>
+                            <p>상품이미지 수정</p>
+                            <form action="/setting/products/{{p.main.1}}/editImage" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="이미지URL" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                </div></div>
+                            </form>
+                            <hr>
+                            <p>최소 구매갯수 설정</p>
+                            <form action="/setting/products/{{p.main.1}}/setLow" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="number" class="form-control" id="exampleInputAmount" placeholder="최소 구매갯수" name="value" value="{{p.main.5}}" >
+                                    <button type="submit" class="btn btn-outline-secondary">설정</button>
+                                </div></div>
+                            </form>
+                            <hr>
+                            <p> 카테고리 </p>
+								<form action="/setting/products/{{p.main.1}}/setCategory" method="post">
+    
+
+								<div class="input-group mb-3">
+									
+									<select class="custom-select" id="inputGroupSelect03" name="value">
+                                        {% for i in category %}
+                                            {% if p.main.1 == i.1 %}
+                                                <option value="{{i.1}}" name="value" selected>{{i.2}}</option>
+                                            {% else %}
+                                                <option value="{{i.1}}" name="value">{{i.2}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                        
+									</select>
+									<div class="input-group-prepend">
+										<button class="btn btn-outline-secondary" type="submit">설정</button>
+									  </div>
+								  </div>
+								  
+								
+							</form>
+                            <hr>
+                            <p>상품레이블 수정</p>
+                            <form action="/setting/products/{{p.main.1}}/1/editLabel" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="레이블" name="value" value="{{p.라벨1.3}}">
+                                    <button type="submit" class="btn btn-outline-secondary">1일수정</button>
+                                </div></div>
+                            </form>
+                            <form action="/setting/products/{{p.main.1}}/7/editLabel" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="레이블" name="value" value="{{p.라벨7.3}}">
+                                    <button type="submit" class="btn btn-outline-secondary">7일수정</button>
+                                </div></div>
+                            </form>
+                            <form action="/setting/products/{{p.main.1}}/30/editLabel" method="post">
+                                <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="레이블" name="value" value="{{p.라벨30.3}}" >
+                                    <button type="submit" class="btn btn-outline-secondary">30일수정</button>
+                                </div></div>
+                            </form>
+                            <hr>
+                            <p>상품제어</p>
+                            <div class="form-group">
+                    
+                                <div class="input-group">
+                                    
+                                    <form action="/setting/products/{{p.main.1}}/remove" method="post">
+
+                                            <button type="submit" class="btn btn-outline-secondary">상품삭제</button>
+                                    </form>
+                                    <form action="/setting/products/{{p.main.1}}/delAllStock/1" method="post">
+                                            <button type="submit" class="btn btn-outline-secondary">모든재고삭제 [1일]</button>
+                                    </form>
+
+                                    <form action="/setting/products/{{p.main.1}}/delAllStock/7" method="post">
+                                            <button type="submit" class="btn btn-outline-secondary">모든재고삭제 [7일]</button>
+                                    </form>
+
+                                    <form action="/setting/products/{{p.main.1}}/delAllStock/30" method="post">
+                                            <button type="submit" class="btn btn-outline-secondary">모든재고삭제 [30일]</button>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            <p>재고추가</p>
+                            <form action="/setting/products/{{p.main.1}}/addStock/1" method="post">
+    
+         
+                                <div class="form-group">
+            
+                                    <div class="input-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="value"></textarea>
+                                    <button type="submit" class="btn btn-outline-secondary">재고추가 [1일]</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            <form action="/setting/products/{{p.main.1}}/addStock/7" method="post">
+    
+         
+                                <div class="form-group">
+            
+                                    <div class="input-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="value"></textarea>
+                                    <button type="submit" class="btn btn-outline-secondary">재고추가 [7일]</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            <form action="/setting/products/{{p.main.1}}/addStock/30" method="post">
+    
+         
+                                <div class="form-group">
+            
+                                    <div class="input-group">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="value"></textarea>
+                                    <button type="submit" class="btn btn-outline-secondary">재고추가 [30일]</button>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </form>
+                            <hr>
+                            <p>상품가격 수정</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        
+                                        <th>
+                                            비고                                            
+                                        </th>
+                                        <th>
+                                            가격
+                                        </th>
+                                        <th>
+                                            수정
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1일 [비구매자]</td> <td>{{p.비구매자1.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/비구매자/1/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7일 [비구매자]</td> <td>{{p.비구매자7.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/비구매자/7/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>30일 [비구매자]</td> <td>{{p.비구매자30.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/비구매자/30/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+                                    <tr>
+                                        <td>1일 [구매자]</td> <td>{{p.구매자1.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/구매자/1/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7일 [구매자]</td> <td>{{p.구매자7.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/구매자/7/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>30일 [구매자]</td> <td>{{p.구매자30.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/구매자/30/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+
+                                    <tr>
+                                        <td>1일 [VIP]</td> <td>{{p.VIP1.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/VIP/1/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7일 [VIP]</td> <td>{{p.VIP7.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/VIP/7/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>30일 [VIP]</td> <td>{{p.VIP30.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/VIP/30/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+
+
+
+
+
+                                    <tr>
+                                        <td>1일 [리셀러]</td> <td>{{p.리셀러1.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/리셀러/1/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>7일 [리셀러]</td> <td>{{p.리셀러7.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/리셀러/7/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>30일 [리셀러]</td> <td>{{p.리셀러30.4}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{p.main.1}}/리셀러/30/editPrice" method="post"> 
+                                                <div class="form-group">
+                                          <div class="input-group">
+                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="가격" name="value" >
+                                    <button type="submit" class="btn btn-outline-secondary">수정하기</button>
+                                    </div>
+                                                </div>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+
+                                </tbody>
+                            </table> 
+
+
+                            <hr>
+                            <p>재고 [1일]</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            재고
+                                        </th>
+                                        <th>
+                                            삭제
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in s1 %}
+                                    <tr>
+                                        <td>{{i.2}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{i.1}}/delStock/1" method="post">
+                                                <input type="hidden" name="value" value="{{i.2}}">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                                </div>
+                                            </form>
+                                        </td>
+ 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+
+
+                            <hr>
+                            <p>재고 [7일]</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            재고
+                                        </th>
+                                        <th>
+                                            삭제
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in s7 %}
+                                    <tr>
+                                        <td>{{i.2}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{i.1}}/delStock/7" method="post">
+                                                <input type="hidden" name="value" value="{{i.2}}">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                                </div>
+                                            </form>
+                                        </td>
+ 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+
+                            <hr>
+                            <p>재고 [30일]</p>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            재고
+                                        </th>
+                                        <th>
+                                            삭제
+                                        </th>
+                                </thead>
+                                <tbody>
+                                    {% for i in s30 %}
+                                    <tr>
+                                        <td>{{i.2}}</td>
+                                        <td>
+                                            <form action="/setting/products/{{i.1}}/delStock/30" method="post">
+                                                <input type="hidden" name="value" value="{{i.2}}">
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-outline-secondary">삭제</button>
+                                                </div>
+                                            </form>
+                                        </td>
+ 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

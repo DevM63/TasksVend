@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="productcontent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <h3>유저 리스트 [{{type}}]</h3>
+                            <p>
+                                <span class="u" onclick='location.replace("/setting/users")'>총회원 {{all}}</span> | 
+                                <span class="u" onclick='location.replace("/setting/users/비구매자")'>비구매자 {{normal}}</span> |
+                                <span class="u" onclick='location.replace("/setting/users/구매자")'>구매자 {{pur}}</span> | 
+                                <span class="u" onclick='location.replace("/setting/users/VIP")'>VIP {{vip}}</span> | 
+                                <span class="u" onclick='location.replace("/setting/users/리셀러")'>리셀러 {{reseller}}</span> 
+                            </p>
+                            <hr>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            아이디
+                                        </th>
+                                        <th>
+                                            랭크
+                                        </th>
+                                        <th>
+                                            보유돈
+                                        </th>
+                                        <th>
+                                            입금자명
+                                        </th>
+                                        <th>
+                                            추천수
+                                        </th>
+                                        <th>
+                                            누적 구매 금액
+                                        </th>
+                                        <th>
+                                            돈설정
+                                        </th>
+
+    
+                                    
+                                </thead>
+                                <tbody>
+                                    {% for i in users %}
+                                    <tr>
+                                        <td>
+                                            {{i.1}}
+                                        </td>
+                                        <td>
+                                            <form action="/setting/user/{{i.1}}/editRank" method="post">
+    
+         
+                                                <div class="input-group mb-3">
+                                                    
+                                                    <select class="custom-select" id="inputGroupSelect03" name="value">
+
+                                                        {% if i.5 == "비구매자" %} <option value="비구매자" name="value" selected>비구매자</option>
+                                                        {% else %} <option value="비구매자" name="value">비구매자</option> {% endif  %}
+
+
+                                                        {% if i.5 == "구매자" %} <option value="구매자" name="value" selected>구매자</option>
+                                                        {% else %} <option value="구매자" name="value">구매자</option> {% endif  %}
+                                                        
+                                                        {% if i.5 == "VIP" %} <option value="VIP" name="value" selected>VIP</option>
+                                                        {% else %} <option value="VIP" name="value">VIP</option> {% endif  %}
+
+                                                        {% if i.5 == "리셀러" %} <option value="리셀러" name="value" selected>리셀러</option>
+                                                        {% else %} <option value="리셀러" name="value">리셀러</option> {% endif  %}
+                                                      
+                                                    </select>
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-outline-secondary" type="submit">설정</button>
+                                                      </div>
+                                                  </div>
+                                                  
+                                                
+                                            </form>
+                                            
+                                            
+                                        </td>
+                                        <td>
+                                            {{i.4}}
+                                        </td>
+                                        <td>
+                                            {{i.6}}
+                                        </td>
+                                        <td>
+                                            {{i.10}}
+                                        </td>
+                                        <td>
+                                            {{i.11}}
+                                        </td>
+                                        <td>
+                                            <form action="/setting/user/{{i.1}}/editAmount" method="post">
+    
+         
+                                                <div class="form-group">
+                                                    
+                                                    <div class="input-group">
+                                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="금액" name="value" >
+                                                    <button type="submit" class="btn btn-outline-secondary">설정</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                                
+                                            </form>
+                                        </td>
+ 
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table> 
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

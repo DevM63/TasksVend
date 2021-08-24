@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>컬쳐랜드 충전</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <script src="https://use.fontawesome.com/e7b1fefbc7.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@3/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9/dist/sweetalert2.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+    <script>
+        function onloadfunc() { 
+            Swal.fire({
+                title: '문화상품권 충전',
+                footer: '문화상품권 핀코드를 입력해 주세요. <br>-를 포함해 주세요.',
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: "충전",
+                cancelButtonText: '취소',
+                cancelButtonColor: 'red',
+                showLoaderOnConfirm: true,
+                preConfirm: (code) => {
+
+                    $.post('/culture', {
+                        code: code
+                    }, function (result) {
+                        const obj = result;
+                        console.log(obj)
+                        if (obj.success == true) {
+                        
+                            Swal.fire({
+                                // position: 'top-end',
+                                icon: 'success',
+                                title: String(obj.amount) + '원이 성공적으로 충전되었습니다.',
+                                text: obj.message,
+                                footer: "3초후 자동으로 이동합니다.",
+                                showConfirmButton: false,
+                                timer: 3000
+                            }).then((result) => {
+                                location.replace("/")
+                            });
+
+                        } else {
+                            
+                            Swal.fire({
+                                // position: 'top-end',
+                                icon: 'error',
+                                title: '충전에 실패했습니다.',
+                                footer: "3초후 자동으로 이동합니다. ",
+                                text: obj.message,
+                                showConfirmButton: false,
+                                timer: 3000
+                            }).then((result) => {
+                                location.replace("/")
+                            });
+
+
+
+                        }
+                    });
+
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            });
+                
+        }
+    </script>
+</head>
+
+</head>
+<body onload="onloadfunc();">
+    
+</body>
+</html>
