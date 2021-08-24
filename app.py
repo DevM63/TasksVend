@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_wtf.csrf import CSRFProtect
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from flask_wtf import Form, RecaptchaField
-from tools import database, PostForm, random, session, site, user as users, product, culture, coupon
+from tools import database, PostForm, random, session, site, user as users, product, coupon
 from flask_discord import DiscordOAuth2Session, requires_authorization, Unauthorized
 def Value():
     # title=site.name, log=product.buylog
@@ -616,7 +616,7 @@ def setting_normal():
                 notice3 = database.select("sites", id=site.id)[0][16]
                 notice4 = database.select("sites", id=site.id)[0][17]
                 print(site.color())
-                return render_template(site.template+"/setting_normal.html",**Value(),t=template,tt=site.template, refer_percent=refer_percent, gid=gid, rid=rid,webhook=site.webhook,notice1=notice1, notice2=notice2, notice3=notice3, notice4=notice4, logo_url=site.logo, end=end, culturelist=culture.clist)
+                return render_template(site.template+"/setting_normal.html",**Value(),t=template,tt=site.template, refer_percent=refer_percent, gid=gid, rid=rid,webhook=site.webhook,notice1=notice1, notice2=notice2, notice3=notice3, notice4=notice4, logo_url=site.logo, end=end)
             else:
                 return render_template(site.template+"/404.html"), 404
 @app.route("/setting/normal/editLayout", methods=["POST"])
