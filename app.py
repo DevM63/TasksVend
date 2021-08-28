@@ -858,7 +858,7 @@ def setting_normal_editCulture():
                 if value2.strip() == "" or value2 == None:
                     return render_template(site.template+"/goto.html",message="공백또는 빈 컬쳐랜드 ID또는 PW는 허용하지 않습니다.", url="/setting/normal")
                 # culture.edit(value1, value2)
-                database.update("sites", "culture", Auto.CulturelandGetToken(value1, value2)[2],id=site.id)
+                database.update("sites", "culture", f"{value1}:{value2}",id=site.id)
                 return render_template(site.template+"/goto.html",message="성공적으로 컬쳐랜드 정보를 변경했습니다.", url="/setting/normal")
             else:
                 return render_template(site.template+"/404.html"), 404
@@ -1351,7 +1351,8 @@ def _culture():
     else:
         if site.culture == None or site.culture == "" or site.culture == "null":
             return "문화상품권 자동충전이 비활성화 되어 있습니다."
-        amount, message = Auto.CulturelandAutoCharge(site.culture, request.form.get("code"))
+        c = site.culture.split(":")
+        amount, message = Auto.CulturelandAutoCharge(c[0], c[1], request.form.get("code"))
         if amount != 0:
             amount = int(amount)
             amount = (amount // 100) * (100 - site.culturedown)
