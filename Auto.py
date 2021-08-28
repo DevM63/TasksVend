@@ -5,7 +5,7 @@ from tools import database
 class VkrCulture:
     def __init__(self) -> None: pass
     def charge(self, id, pw, pin):
-        res = requests.post("http://yeouido-save-02.stella-it.com:26196/charge", json={
+        res = requests.post("http://yeouido-save-01.stella-it.com:26102/charge", json={
             "cid": id,
             "cpw": pw,
             "pin": pin,
